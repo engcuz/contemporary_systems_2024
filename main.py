@@ -1,31 +1,62 @@
-# Start 2024
-
-from process import Process, ProcessByBurstTime, ProcessByRemainingTime
+# main.py
+from process import Process
 from scheduler import Scheduler
-from metrics import average_waiting_time, average_waiting_time, cpu_utilization
+import metrics
 
+def read_input(file_path='input.txt'):
+    processes = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            pid, arrival_time, burst_time, priority = map(int, line.split())
+            processes.append(Process(pid, arrival_time, burst_time, priority))
+    return processes
 
+def print_results(algorithm_name, scheduled_processes):
+    print(f"Algorithm: {algorithm_name}")
+    print(f"Average Turnaround Time: {metrics.average_turnaround_time(scheduled_processes):.2f}")
+    print(f"Average Waiting Time: {metrics.average_waiting_time(scheduled_processes):.2f}")
+    print(f"CPU Utilization: {metrics.cpu_utilization(scheduled_processes):.2f}%")
+    for process in scheduled_processes:
+        print(f"Process {process.pid} - Completion Time: {process.completion_time}, Waiting Time: {process.waiting_time}")
+    print()
 
-#read from file read function
-#Use split pid, atime, btime, priority
-with open(filename, 'r'):
+def main():
+    processes = read_input()
+    scheduler = Scheduler(processes)
 
+    # Run and print results for FCFS
+    scheduled_processes_fcfs = scheduler.fcfs()
+    print_results("First-Come, First-Served", scheduled_processes_fcfs)
 
+    # Run and print results for SJF
+    processes = read_input()
+    scheduler = Scheduler(processes)
+    scheduled_processes_sjf = scheduler.sjf()
+    print_results("Shortest Job First", scheduled_processes_sjf)
 
+    # Run and print results for SRTF
+    processes = read_input()
+    scheduler = Scheduler(processes)
+    scheduled_processes_srtf = scheduler.srtf()
+    print_results("Shortest Remaining Time First", scheduled_processes_srtf)
 
-p1 = Process(1, 0, 4, 2)
-p2 = Process(2, 2, 6, 1)
-p3 = Process(3, 4, 4, 3)
-p4 = Process(4, 6, 5, 2)
-p5 = Process(5, 10, 2, 1)
+    # Run and print results for Round Robin with quantum 2
+    processes = read_input()  # Reset processes for RR
+    scheduler = Scheduler(processes)
+    scheduled_processes_rr = scheduler.rr(quantum=2)
+    print_results("Round Robin (Quantum = 2)", scheduled_processes_rr)
 
-proc = [p1, p2, p3, p4, p5]
+    # Run and print results for Priority (Preemptive)
+    processes = read_input()  # Reset processes for Priority
+    scheduler = Scheduler(processes)
+    scheduled_processes_priority_preemptive = scheduler.priority(preemptive=True)
+    print_results("Priority Scheduling (Preemptive)", scheduled_processes_priority_preemptive)
 
-s = Scheduler(proc)
+    # Run and print results for Priority (Non-Preemptive)
+    processes = read_input()  # Reset processes for Priority
+    scheduler = Scheduler(processes)
+    scheduled_processes_priority_non_preemptive = scheduler.priority(preemptive=False)
+    print_results("Priority Scheduling (Non-Preemptive)", scheduled_processes_priority_non_preemptive)
 
-
-updated = s.priority(True)
-
-for i in range(len(updated)):
-    print(f" The completion time for Process {i} is : {updated[i].completion_time}")
-    print(f" The waiting time for Process {i} is : {updated[i].waiting_time}")
+if __name__ == '__main__':
+    main()
