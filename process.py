@@ -1,6 +1,3 @@
-# update July 4th today
-
-# process.py
 class Process:
     def __init__(self, pid, arrival_time, burst_time, priority=0, completion_time=None, waiting_time=0):
         self.pid = pid
@@ -19,6 +16,9 @@ class Process:
                 self.burst_time == other.burst_time and self.priority == other.priority and
                 self.remaining_time == other.remaining_time and self.completion_time == other.completion_time and
                 self.waiting_time == other.waiting_time)
+
+    def __hash__(self):
+        return hash((self.pid, self.arrival_time, self.burst_time, self.priority))
 
     def __repr__(self):
         return (f"Process({self.pid}, {self.arrival_time}, {self.burst_time}, {self.priority}, "

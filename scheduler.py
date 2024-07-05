@@ -1,4 +1,4 @@
-# update July 4th today
+# update July 5th today
 import heapq
 from collections import deque
 from process import Process
@@ -131,29 +131,39 @@ class Scheduler:
 
         return updated_proc
 
-
     def priority(self, preemptive=False):
         updated_proc = []
         current_time = 0
         total_processes = len(self.processes)
         finished_processes = 0
+        waitingQ = []
+        in_heap = set()
 
         while finished_processes < total_processes:
-            highest_priority_process = None
             for process in self.processes:
-                if process.arrival_time <= current_time and process.remaining_time > 0:
-                    if highest_priority_process is None or process.priority < highest_priority_process.priority:
-                        highest_priority_process = process
+                if process.arrival_time <= current_time and process.remaining_time > 0 and process not in in_heap:
+                    heapq.heappush(waitingQ, (process.priority, process.arrival_time, process))
+                    in_heap.add(process)
 
-            if highest_priority_process:
+            if waitingQ:
+                _, _, highest_priority_process = heapq.heappop(waitingQ)
+                in_heap.remove(highest_priority_process)
+
                 if preemptive:
                     highest_priority_process.remaining_time -= 1
                     current_time += 1
+
+                    if highest_priority_process.remaining_time == 0:
+                        highest_priority_process.completion_time = current_time
+                        highest_priority_process.waiting_time = highest_priority_process.completion_time - highest_priority_process.arrival_time - highest_priority_process.burst_time
+                        updated_proc.append(highest_priority_process)
+                        finished_processes += 1
+                    else:
+                        heapq.heappush(waitingQ, (highest_priority_process.priority, highest_priority_process.arrival_time, highest_priority_process))
+                        in_heap.add(highest_priority_process)
                 else:
                     current_time += highest_priority_process.remaining_time
                     highest_priority_process.remaining_time = 0
-
-                if highest_priority_process.remaining_time == 0:
                     highest_priority_process.completion_time = current_time
                     highest_priority_process.waiting_time = highest_priority_process.completion_time - highest_priority_process.arrival_time - highest_priority_process.burst_time
                     updated_proc.append(highest_priority_process)
@@ -161,4 +171,5 @@ class Scheduler:
             else:
                 current_time += 1
 
-        return updated_proc if updated_proc else None
+        return updated_proc
+
