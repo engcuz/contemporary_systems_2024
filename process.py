@@ -1,3 +1,5 @@
+# update July 4th today
+
 # process.py
 class Process:
     def __init__(self, pid, arrival_time, burst_time, priority=0, completion_time=None, waiting_time=0):

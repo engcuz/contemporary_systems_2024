@@ -1,3 +1,5 @@
+# update July 4th today
+
 # metrics.py
 def average_turnaround_time(processes):
     total_turnaround_time = sum(p.completion_time - p.arrival_time for p in processes)
