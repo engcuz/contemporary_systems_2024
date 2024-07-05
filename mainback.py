@@ -1,3 +1,12 @@
+#fcfs
+#sjf
+#srtf
+
+## not sure
+##RR
+## Priority non preemtive 
+## Priority  preemtive
+
 # main.py
 from process import Process
 from scheduler import Scheduler
