@@ -1,5 +1,3 @@
-# update July 4th today
-
 import pytest
 from process import Process
 from scheduler import Scheduler
@@ -27,13 +25,14 @@ expected_sjf = [
     Process(1, 0, 4, 2, completion_time=4, waiting_time=0),
     Process(3, 4, 4, 3, completion_time=8, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=13, waiting_time=2),
-    Process(5, 10, 2,1, completion_time=15, waiting_time=3),
+    Process(5, 10, 2, 1, completion_time=15, waiting_time=3),
+    Process(2, 2, 6, 1, completion_time=21, waiting_time=13)
 ]
 
 expected_srtf = [
     Process(1, 0, 4, 2, completion_time=4, waiting_time=0),
     Process(3, 4, 4, 3, completion_time=8, waiting_time=0),
-    Process(5, 10, 2,1, completion_time=12, waiting_time=0),
+    Process(5, 10, 2, 1, completion_time=12, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=15, waiting_time=4),
     Process(2, 2, 6, 1, completion_time=21, waiting_time=13)
 ]
@@ -41,15 +40,22 @@ expected_srtf = [
 expected_rr = [
     Process(1, 0, 4, 2, completion_time=6, waiting_time=2),
     Process(3, 4, 4, 3, completion_time=14, waiting_time=6),
+    Process(5, 10, 2, 1, completion_time=16, waiting_time=4),
     Process(2, 2, 6, 1, completion_time=18, waiting_time=10),
-    Process(5, 10, 2,1, completion_time=16, waiting_time=4),
     Process(4, 6, 5, 2, completion_time=21, waiting_time=10)
 ]
+
+# Process 1 - Completion Time: 6, Waiting Time: 2
+# Process 3 - Completion Time: 14, Waiting Time: 6
+# Process 5 - Completion Time: 16, Waiting Time: 4
+# Process 2 - Completion Time: 18, Waiting Time: 10
+# Process 4 - Completion Time: 21, Waiting Time: 10
+
 
 expected_priority_preemptive = [
     Process(2, 2, 6, 1, completion_time=8, waiting_time=0),
     Process(1, 0, 4, 2, completion_time=10, waiting_time=6),
-    Process(5, 10, 2,1, completion_time=12, waiting_time=0),
+    Process(5, 10, 2, 1, completion_time=12, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=17, waiting_time=6),
     Process(3, 4, 4, 3, completion_time=21, waiting_time=13)
 ]
@@ -84,22 +90,29 @@ class TestCPUScheduler:
     def test_sjf(self, scheduler):
         result = scheduler.sjf()
         assert result == expected_sjf
-
+#d
+    def test_rr(self, scheduler):
+        result = scheduler.rr(quantum=2)
+        assert result == expected_rr
+#done
+    def test_priority_non_preemptive(self, scheduler):
+        result = scheduler.priority(preemptive=False)
+        assert result == expected_priority_non_preemptive
+#Done
+    def test_priority_preemptive(self, scheduler):
+        result = scheduler.priority(preemptive=True)
+        assert result == expected_priority_preemptive
+    
+#Done
     def test_srtf(self, scheduler):
         result = scheduler.srtf()
         assert result == expected_srtf
 
-    def test_rr(self, scheduler):
-        result = scheduler.rr(quantum=2)
-        assert result == expected_rr
+    
 
-    def test_priority_preemptive(self, scheduler):
-        result = scheduler.priority(preemptive=True)
-        assert result == expected_priority_preemptive
+    
 
-    def test_priority_non_preemptive(self, scheduler):
-        result = scheduler.priority(preemptive=False)
-        assert result == expected_priority_non_preemptive
+    
 
     def test_metrics(self):
         att = average_turnaround_time(expected_fcfs)
