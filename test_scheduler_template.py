@@ -27,30 +27,29 @@ expected_sjf = [
     Process(1, 0, 4, 2, completion_time=4, waiting_time=0),
     Process(3, 4, 4, 3, completion_time=8, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=13, waiting_time=2),
-    Process(5, 10, 2, 1, completion_time=15, waiting_time=3),
-    Process(2, 2, 6, 1, completion_time=21, waiting_time=13)
+    Process(5, 10, 2,1, completion_time=15, waiting_time=3),
 ]
 
 expected_srtf = [
     Process(1, 0, 4, 2, completion_time=4, waiting_time=0),
     Process(3, 4, 4, 3, completion_time=8, waiting_time=0),
-    Process(5, 10, 2, 1, completion_time=12, waiting_time=0),
+    Process(5, 10, 2,1, completion_time=12, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=15, waiting_time=4),
     Process(2, 2, 6, 1, completion_time=21, waiting_time=13)
 ]
 
 expected_rr = [
-    Process(1, 0, 4, 2, completion_time=4, waiting_time=2),
-    Process(3, 4, 4, 3, completion_time=14, waiting_time=8),
-    Process(2, 2, 6, 1, completion_time=16, waiting_time=12),
-    Process(5, 10, 2, 1, completion_time=18, waiting_time=6),
-    Process(4, 6, 5, 2, completion_time=21, waiting_time=14)
+    Process(1, 0, 4, 2, completion_time=6, waiting_time=2),
+    Process(3, 4, 4, 3, completion_time=14, waiting_time=6),
+    Process(2, 2, 6, 1, completion_time=18, waiting_time=10),
+    Process(5, 10, 2,1, completion_time=16, waiting_time=4),
+    Process(4, 6, 5, 2, completion_time=21, waiting_time=10)
 ]
 
 expected_priority_preemptive = [
     Process(2, 2, 6, 1, completion_time=8, waiting_time=0),
     Process(1, 0, 4, 2, completion_time=10, waiting_time=6),
-    Process(5, 10, 2, 1, completion_time=12, waiting_time=0),
+    Process(5, 10, 2,1, completion_time=12, waiting_time=0),
     Process(4, 6, 5, 2, completion_time=17, waiting_time=6),
     Process(3, 4, 4, 3, completion_time=21, waiting_time=13)
 ]

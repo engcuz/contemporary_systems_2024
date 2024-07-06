@@ -150,6 +150,7 @@ class Scheduler:
                 in_heap.remove(highest_priority_process)
 
                 if preemptive:
+                    # Run for one unit of time
                     highest_priority_process.remaining_time -= 1
                     current_time += 1
 
@@ -162,6 +163,7 @@ class Scheduler:
                         heapq.heappush(waitingQ, (highest_priority_process.priority, highest_priority_process.arrival_time, highest_priority_process))
                         in_heap.add(highest_priority_process)
                 else:
+                    # Run to completion
                     current_time += highest_priority_process.remaining_time
                     highest_priority_process.remaining_time = 0
                     highest_priority_process.completion_time = current_time
@@ -172,4 +174,6 @@ class Scheduler:
                 current_time += 1
 
         return updated_proc
+    
 
+    

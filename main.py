@@ -1,3 +1,14 @@
+# update July 5th today
+
+#1 0 4 2 
+#2 2 6 1
+#3 4 4 3
+#4 6 5 2
+#5 10 2 1
+
+
+
+
 # main.py
 from process import Process
 from scheduler import Scheduler
