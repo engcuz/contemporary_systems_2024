@@ -1,5 +1,6 @@
 # update July 5th today 11:40PM
-
+# update July 9th today 1:40 PM
+#moved 
 # metrics.py
 # 
 # calculate different between  completion time and arrival time of each process.

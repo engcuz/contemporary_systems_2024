@@ -1,5 +1,6 @@
-# # update July 5th today 11:40PM
-
+# update July 5th today 11:40PM
+# update July 9th today 1:40 PM
+#moved 
 
 class Process:
     #define the methods and the objects/ attributs 
@@ -22,6 +23,7 @@ class Process:
         return (self.pid == other.pid and
                 self.completion_time == other.completion_time and
                 self.waiting_time == other.waiting_time)
+    
 
 # to allow processe to  used in sets and dictionary keys
     def __hash__(self):
