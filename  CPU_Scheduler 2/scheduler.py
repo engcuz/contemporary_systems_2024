@@ -1,6 +1,5 @@
 # update July 5th today 11:40 PM
 import heapq
-import copy
 from collections import deque
 from process import Process
 
@@ -9,18 +8,9 @@ class Scheduler:
     # list of  process 
     def __init__(self, processes):
         self.processes = processes
-        self.processes_ground_truth = processes
-
-
-    def reset_processes(self):
-        # Create a new deep copy of the processes for each test to ensure isolation
-
-        self.processes = copy.deepcopy(self.processes_ground_truth)
 
 # define rthe  fcfs method 
     def fcfs(self):
-        self.reset_processes()
-
         current_time = 0
         # sort   process  by arreiva time 
         for process in sorted(self.processes, key=lambda x: x.arrival_time):
@@ -34,8 +24,6 @@ class Scheduler:
 
     def sjf(self):
         #List to store processes in  order it complete
-        self.reset_processes()
-
         updated_proc = []
         waitingQ = []
         current_time = 0
@@ -72,8 +60,6 @@ class Scheduler:
 
 # Shortest remaining time first scheduling algorithm
     def srtf(self):
-        self.reset_processes()
-
         updated_proc = []
         waitingQ = []
         current_time = 0
@@ -114,8 +100,6 @@ class Scheduler:
         return updated_proc
 
     def rr(self, quantum):
-        self.reset_processes()
-
         current_time = 0
         waitingQ = deque()
         updated_proc = []
@@ -160,8 +144,6 @@ class Scheduler:
 
 # implements priority scheduling, / preemptive / none
     def priority(self, preemptive=False):
-        self.reset_processes()
-
         updated_proc = []
         current_time = 0
         total_processes = len(self.processes)
