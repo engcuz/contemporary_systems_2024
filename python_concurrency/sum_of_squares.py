@@ -1,4 +1,6 @@
-# sum_of_squares.py
+# update on July 15, 10:50PM
+#Albernawi
+#COMP 4704
 import time
 
 def sum_of_squares(limit):

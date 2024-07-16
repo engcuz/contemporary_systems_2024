@@ -1,4 +1,5 @@
-# download_files.py
+# update on July 15, 10:30PM
+
 import requests
 import time
 
@@ -17,10 +18,12 @@ def download_and_process_files(urls):
         word_count = process_file(content)
         results.append((url, word_count))
     return results
+# done 
 
 if __name__ == "__main__":
     with open("urls.txt") as f:
         urls = [line.strip() for line in f]
+        #print(urls)
 
     start_time = time.time()
     results = download_and_process_files(urls)

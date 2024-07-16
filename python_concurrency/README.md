@@ -1,10 +1,10 @@
-# Concurrency Project
+# Concurrency assignment
 
 ## Description
 This project implements concurrent solutions for two different types of tasks using both threading and multiprocessing in Python. The tasks are:
 
 1. Calculating the sum of squares (CPU-bound task).
-2. Downloading and processing files from a list of URLs (IO-bound task).
+2. Downloading and processing files from list of urls (IO-bound task).
 
 ## Project Structure
 concurrency_project/

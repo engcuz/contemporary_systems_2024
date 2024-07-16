@@ -1,0 +1,117 @@
+
+
+
+1- Sum of Squares
+
+
+# --------------------- Non-Concurrent :
+
+Sum of squares up to 1000000: 333332833333500000
+Execution time (non-concurrent): 0.230881929397583 seconds
+
+
+# --------------------- sum_of_squares_threading : 
+
+Sum of squares up to: 1000000 is :  333332833333500000
+Execution time on threading: 0.23929905891418457  seconds
+
+# --------------------- sum_of_squares_multiprocessing :
+
+Sum of squares up to: 1000000 is :  333332833333500000
+Execution time on multiprocessing: 0.3166351318359375  seconds
+
+
+
+sum_of_squares:
+
+non-concurrent &threading implementations have similar performance due to the GIL,  that prevent multiple threads from executing Python codes at once.  which limits the effectiveness of threading .
+multiprocessing implementation is higher overhead, lead to a bit longer execution times despite better CPU utilization.
+
+
+
+
+
+
+2- download_files
+
+#--------------------- non-Concurrent : 
+
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/84/84-0.txt: 78098 words
+https://www.gutenberg.org/files/11/11-0.txt: 26549 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/76/76-0.txt: 114129 words
+https://www.gutenberg.org/files/2542/2542-0.txt: 26497 words
+https://www.gutenberg.org/files/120/120-0.txt: 68655 words
+https://www.gutenberg.org/files/98/98-0.txt: 138965 words
+https://www.gutenberg.org/files/4300/4300-0.txt: 268123 words
+https://www.gutenberg.org/files/74/74-0.txt: 73844 words
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/1232/1232-0.txt: 52986 words
+https://www.gutenberg.org/files/105/105-0.txt: 86396 words
+https://www.gutenberg.org/files/1400/1400-0.txt: 187513 words
+https://www.gutenberg.org/files/1184/1184-0.txt: 461005 words
+https://www.gutenberg.org/files/5200/5200-0.txt: 25094 words
+https://www.gutenberg.org/files/16/16-0.txt: 50332 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+Execution time (non-concurrent): 16.04381012916565 seconds
+
+
+# --------------------- download_files_threading :
+
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/84/84-0.txt: 78098 words
+https://www.gutenberg.org/files/11/11-0.txt: 26549 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/76/76-0.txt: 114129 words
+https://www.gutenberg.org/files/2542/2542-0.txt: 26497 words
+https://www.gutenberg.org/files/120/120-0.txt: 68655 words
+https://www.gutenberg.org/files/98/98-0.txt: 138965 words
+https://www.gutenberg.org/files/4300/4300-0.txt: 268123 words
+https://www.gutenberg.org/files/74/74-0.txt: 73844 words
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/1232/1232-0.txt: 52986 words
+https://www.gutenberg.org/files/105/105-0.txt: 86396 words
+https://www.gutenberg.org/files/1400/1400-0.txt: 187513 words
+https://www.gutenberg.org/files/1184/1184-0.txt: 461005 words
+https://www.gutenberg.org/files/5200/5200-0.txt: 25094 words
+https://www.gutenberg.org/files/16/16-0.txt: 50332 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+execution time on threading: 6.709526062011719 seconds
+
+
+# --------------------- download_files_multiprocessing
+
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/84/84-0.txt: 78098 words
+https://www.gutenberg.org/files/11/11-0.txt: 26549 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/76/76-0.txt: 114129 words
+https://www.gutenberg.org/files/2542/2542-0.txt: 26497 words
+https://www.gutenberg.org/files/120/120-0.txt: 68655 words
+https://www.gutenberg.org/files/98/98-0.txt: 138965 words
+https://www.gutenberg.org/files/4300/4300-0.txt: 268123 words
+https://www.gutenberg.org/files/74/74-0.txt: 73844 words
+https://www.gutenberg.org/files/1342/1342-0.txt: 127381 words
+https://www.gutenberg.org/files/1232/1232-0.txt: 52986 words
+https://www.gutenberg.org/files/105/105-0.txt: 86396 words
+https://www.gutenberg.org/files/1400/1400-0.txt: 187513 words
+https://www.gutenberg.org/files/1184/1184-0.txt: 461005 words
+https://www.gutenberg.org/files/5200/5200-0.txt: 25094 words
+https://www.gutenberg.org/files/16/16-0.txt: 50332 words
+https://www.gutenberg.org/files/2701/2701-0.txt: 215864 words
+https://www.gutenberg.org/files/1661/1661-0.txt: 107562 words
+Execution time on multiprocessing: 6.586997032165527 seconds
+
+download_files
+Both threading and multiprocessing has  improved  performance compared to non-concurrent implementation, deacreasing execution time by over half.
+threading somties has a slight edge over multiprocessing for this task, may  due to lower overhead.
+
+
+
+
